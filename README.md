@@ -67,3 +67,15 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 "# photogallery" 
+
+
+Short form:
+Checkout the code from https://github.com/navindian/VodafonePhotoGallery
+
+cd C:\Users\naveen_gayar\Documents\GitHub\VodafonePhotoGallery . Here naveen_gayar can be replaced with username
+
+npm install
+
+npm start
+
+open http://localhost:3000 in Chrome
