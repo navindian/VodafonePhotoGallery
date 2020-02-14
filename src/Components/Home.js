@@ -2,7 +2,6 @@ import React from 'react'
 import Footer from '../Components/Common/Footer'
 import { connect } from 'react-redux'
 import { usersList } from '../Redux/Actions/usersList'
-import { photosList } from '../Redux/Actions/photosList'
 
 import classes from '../Styles/Common.module.css'
 import ListAlbum from './Albums/ListAlbum'
@@ -19,7 +18,6 @@ class Home extends React.Component {
 
     componentDidMount() {
         this.props.usersList();
-        this.props.photosList();
     }
 
     render() {
@@ -34,4 +32,4 @@ class Home extends React.Component {
     }
 }
 
-export default connect(null, {usersList, photosList})(Home)
+export default connect(null, {usersList})(Home)

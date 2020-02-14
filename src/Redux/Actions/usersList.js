@@ -1,5 +1,5 @@
 import * as types from '../ActionTypes/Types';
-import api from '../../Config/api';
+import api from '../../API/api';
 
 export const listUsers = (users) => ({
     type: types.VF_NZ_USERLIST,
