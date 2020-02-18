@@ -6,10 +6,6 @@ export const listUsers = (users) => ({
     payload: users,
 })
 
-export const usersList = () => dispatch => {
-    api.users.usersList().then(res =>{
-        console.log(res);
-        dispatch(listUsers(res.data));
-    })
- }
-
+export const usersList = () => dispatch =>
+    api.users.usersList().then(res => dispatch(listUsers(res.data))
+)

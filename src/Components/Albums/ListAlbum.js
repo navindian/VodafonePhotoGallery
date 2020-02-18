@@ -9,12 +9,17 @@ class ListAlbum extends React.Component {
         super(props)
 
         this.state = {
-            loader: false        
+            loader: true        
         }
     }
     
     componentDidMount() {
-        this.props.albumsList();
+        this.props.albumsList().then(() => {
+            this.setState({loader: false})
+        }).catch((err) => {
+            console.log(err)
+            this.setState({loader: false})
+        });
     }
 
     render() {

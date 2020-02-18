@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import classes from '../../Styles/Common.module.css'
+import classes from '../../css/Common.module.css'
 import { photosList } from '../../Redux/Actions/photosList'
 import { albumsList } from '../../Redux/Actions/albumsList'
 import Loader from '../Common/Loader'
@@ -10,13 +10,24 @@ class ListPhoto extends React.Component {
         super(props)
 
         this.state = {
-            loader: false
+            loader: true
         }
     }
 
     componentDidMount() {
-        this.props.photosList();
-        this.props.albumsList();
+        this.props.photosList().then(() => {
+            this.setState({loader: false})
+        }).catch((err) => {
+            console.log(err)
+            this.setState({loader: false})
+        });
+        
+        this.props.albumsList().then(() => {
+            this.setState({loader: false})
+        }).catch((err) => {
+            console.log(err)
+            this.setState({loader: false})
+        });
     }
 
     render() {

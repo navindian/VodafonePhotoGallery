@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from "react-router-dom"
-import classes from '../../Styles/Common.module.css'
-import folderClasses from '../../Styles/Gallery.module.css'
+import classes from '../../css/Common.module.css'
+import folderClasses from '../../css/Gallery.module.css'
 
 class Album extends React.Component {
     getUserName(userId) {

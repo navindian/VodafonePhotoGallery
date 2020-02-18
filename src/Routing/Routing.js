@@ -3,11 +3,11 @@ import React from "react";
 import { Route, Link, Switch } from 'react-router-dom';
 import logo from '../Images/logo.jpg';
 /* Importing neccesary components for Routing */
-import Home from '../Components/Home'
+import Dashboard from '../Components/Dashboard'
 import Album from '../Components/Albums/ListAlbum';
 import NotFound from '../Components/Common/404'
-import ListPhoto from "../Components/PhotoList/ListPhoto";
-import Photos from "../Components/PhotoList/ListPhoto";
+import ListPhoto from "../Components/Photos/ListPhoto";
+import Photos from "../Components/Photos/ListPhoto";
 
 
 export default class Routing extends React.Component {
@@ -44,7 +44,7 @@ export default class Routing extends React.Component {
       </nav>
   
     <Switch>
-    <Route path="/" exact component={Home} />
+    <Route path="/" exact component={Dashboard} />
     <Route path="/Album" exact component={Album} />
     <Route path="/Photos" exact component={Photos} />
     <Route path="/photos/:id" component={ListPhoto} />
