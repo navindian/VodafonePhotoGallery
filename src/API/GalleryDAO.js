@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const InvokeGetAPI = (url) => {
+export const GalleryDAO = (url) => {
     return new Promise((resolve, reject) => {
         var params = {}
 
