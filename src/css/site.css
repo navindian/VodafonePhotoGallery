@@ -3,7 +3,8 @@ body {
 }  
 
 img.brand {
-    width: 65px;
+  width: 50%;
+  margin-left: 3px;
 }
 
 img.notFound {
@@ -45,3 +46,52 @@ input.error {
   div.loader {
     font-size: 200px;
   }
+
+  .current-page {
+    font-size: 1.5rem;
+    vertical-align: middle;
+  }
+  
+  ul.pagination {
+    margin-top: 0;
+    margin-bottom: 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  ul.pagination li.page-item.active a.page-link {
+    color: #445565 !important;
+    background-color: #e3e7eb !important;
+    border-color: #ced4da !important;
+  }
+  ul.pagination a.page-link {
+    padding: 0.5rem 1rem;
+    min-width: 1.5rem;
+    text-align: center;
+    box-shadow: none !important;
+    border-color: #ced4da !important;
+    color: #6b88a4;
+    font-weight: 900;
+    font-size: 1rem;
+  }
+  ul.pagination a.page-link:hover {
+    background-color: #f4f4f4;
+  }
+  
+.pb-5, .py-5 {
+  padding-bottom: 0rem!important;
+}
+.pl-4, .px-4 {
+  padding-left: 2rem!important;
+}
+
+.pt-5, .py-5 {
+  padding-top: 0rem!important;
+}
+
+.flex-row {
+  -ms-flex-direction: row;
+  flex-direction: row-reverse !important;
+}
+
+.pt-4, .py-4 {
+  padding-top: 0rem!important;
+}

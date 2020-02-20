@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { Route, Link, Switch } from 'react-router-dom';
-import logo from '../Images/logo.jpg';
+import logo from '../Images/newVodafone.png';
 /* Importing neccesary components for Routing */
 import Dashboard from '../Components/Dashboard'
 import Album from '../Components/Albums/ListAlbum';

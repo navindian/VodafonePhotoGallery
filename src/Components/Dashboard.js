@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Footer from './Common/Footer'
 import { connect } from 'react-redux'
 import { usersList } from '../Redux/Actions/usersList'
@@ -27,12 +27,12 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-            <div className={classes.mainAppWrapper}>
+            <Fragment>
                 <div className={classes.listWrapper}>
                     {this.state.loader ? <Loader /> : <ListAlbum />}
                 </div>
                 <Footer />
-            </div>
+            </Fragment>
         )
     }
 }

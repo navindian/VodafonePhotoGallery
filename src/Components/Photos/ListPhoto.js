@@ -1,16 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import classes from '../../css/Common.module.css'
 import { photosList } from '../../Redux/Actions/photosList'
 import { albumsList } from '../../Redux/Actions/albumsList'
 import Loader from '../Common/Loader'
+import Pagination from '../Common//Pagination'
+import PhotoCard from './PhotoCard'
 
 class ListPhoto extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            loader: true
+            loader: true,
+            currentPhotos: [],
+            currentPage: null,
+            totalPages: null
         }
     }
 
@@ -30,33 +34,42 @@ class ListPhoto extends React.Component {
         });
     }
 
+    onPageChanged = data => {
+        const { currentPage, totalPages, pageLimit } = data;
+    
+        const offset = (currentPage - 1) * pageLimit;
+        const currentPhotos = this.props.photos.slice(offset, offset + pageLimit);
+    
+        this.setState({ currentPage, currentPhotos, totalPages });
+    };
+
     render() {
+        const {
+            currentPhotos
+          } = this.state;
+        var totalPhotos = this.props.photos;
+
         return (
-            <div className={classes.mainAppWrapper}>
-                <div className={classes.photoBox}>
-                    {this.state.loader ? <Loader /> : (this.props.photos !== undefined && this.props.photos.length > 0) && this.props.photos.map(photo =>
-                        <div className={classes.photoHolder} key={Math.random()}>
-                            {/* thumbnail image wrapped in a link */}
-                            <a href={"#image_" + photo.id}>
-                                <img src={photo.thumbnailUrl} className={classes.thumbnail} alt="thumbnail" />
-                            </a>
-
-                            {/* lightbox container hidden with CSS */}
-                            <a href="#_" className={classes.lightbox} id={"image_" + photo.id}>
-                                <img src={photo.url} alt="lightbox"/>
-                                <div className={classes.photoDesc}>
-                                    <p>{photo.title}</p>
-                                </div>
-                            </a>
-
-                            <a href={"#image_" + photo.id}>
-                            <div className={classes.photoDesc}>
-                                <p>{photo.title.length > 30 ? photo.title.substr(0, 30) + "..." : photo.title}</p>
+            <div>
+                {totalPhotos !== undefined && totalPhotos.length > 0 ?
+                    <div>
+                        <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
+                            <div className="d-flex flex-row py-4 align-items-center">
+                                <Pagination
+                                    totalRecords={totalPhotos.length}
+                                    pageLimit={21}
+                                    pageNeighbours={1}
+                                    onPageChanged={this.onPageChanged}
+                                />
                             </div>
-                            </a>
                         </div>
-                    )}
-                </div>
+                        {currentPhotos.map(photos => (
+                            <PhotoCard key={photos.id} photos={photos} />
+                        ))}
+                    </div>
+                       :
+                    <Loader /> 
+                }
             </div>
         )
     }
