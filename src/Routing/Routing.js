@@ -44,9 +44,9 @@ export default class Routing extends React.Component {
       </nav>
   
     <Switch>
-    <Route path="/" exact component={Dashboard} />
-    <Route path="/Album" exact component={Album} />
-    <Route path="/Photos" exact component={Photos} />
+    <Route exact path="/"  component={Dashboard} />
+    <Route exact path="/Album"  component={Album} />
+    <Route exact path="/Photos"  component={Photos} />
     <Route path="/photos/:id" component={ListPhoto} />
     <Route component={NotFound} />
     </Switch>
