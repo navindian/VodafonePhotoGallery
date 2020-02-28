@@ -1,4 +1,4 @@
-import React  ,{useEffect ,useState}from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { photosList } from '../../Redux/Actions/photosList'
 import { albumsList } from '../../Redux/Actions/albumsList'
@@ -6,25 +6,49 @@ import Loader from '../Common/Loader'
 import Pagination from '../Common//Pagination'
 import PhotoCard from './PhotoCard'
 
-const  ListPhoto = props => {
-    const [totalPhotos,changetotalPhotos]=useState([])
-    const [currentPhotos,changecurrentPhotos]=useState([])
-    
-    useEffect(() =>{
-        props.photosList().then(() => {
-            changetotalPhotos(props.photos)
-           
+class ListPhoto extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            loader: true,
+            currentPhotos: [],
+            currentPage: null,
+            totalPages: null
+        }
+    }
+
+    componentDidMount() {
+        this.props.photosList().then(() => {
+            this.setState({loader: false})
         }).catch((err) => {
             console.log(err)
-            changetotalPhotos([])
+            this.setState({loader: false})
         });
-    })
+        
+        this.props.albumsList().then(() => {
+            this.setState({loader: false})
+        }).catch((err) => {
+            console.log(err)
+            this.setState({loader: false})
+        });
+    }
 
-    const onPageChanged = data => {
-        const { currentPage, pageLimit } = data;
+    onPageChanged = data => {
+        const { currentPage, totalPages, pageLimit } = data;
+    
         const offset = (currentPage - 1) * pageLimit;
-        changecurrentPhotos(props.photos.slice(offset, offset + pageLimit));
+        const currentPhotos = this.props.photos.slice(offset, offset + pageLimit);
+    
+        this.setState({ currentPage, currentPhotos, totalPages });
     };
+
+    render() {
+        const {
+            currentPhotos
+          } = this.state;
+        var totalPhotos = this.props.photos;
+
         return (
             <div>
                 {totalPhotos !== undefined && totalPhotos.length > 0 ?
@@ -35,7 +59,7 @@ const  ListPhoto = props => {
                                     totalRecords={totalPhotos.length}
                                     pageLimit={21}
                                     pageNeighbours={1}
-                                    onPageChanged={onPageChanged}
+                                    onPageChanged={this.onPageChanged}
                                 />
                             </div>
                         </div>
@@ -49,6 +73,7 @@ const  ListPhoto = props => {
             </div>
         )
     }
+}
 
 const mapStateToProps = state => {
     return {
@@ -56,5 +81,6 @@ const mapStateToProps = state => {
         albums: state.albums
     }
 }
+
 
 export default connect(mapStateToProps, {photosList,albumsList})(ListPhoto)
