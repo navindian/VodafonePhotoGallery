@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { photosList } from '../../Redux/Actions/photosList'
 import { albumsList } from '../../Redux/Actions/albumsList'
@@ -50,27 +50,23 @@ class ListPhoto extends React.Component {
         var totalPhotos = this.props.photos;
 
         return (
-            <div>
+            <Fragment>
                 {totalPhotos !== undefined && totalPhotos.length > 0 ?
-                    <div>
-                        <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
-                            <div className="d-flex flex-row py-4 align-items-center">
-                                <Pagination
-                                    totalRecords={totalPhotos.length}
-                                    pageLimit={21}
-                                    pageNeighbours={1}
-                                    onPageChanged={this.onPageChanged}
-                                />
-                            </div>
-                        </div>
+                    <Fragment>
+                        <Pagination
+                            totalRecords={totalPhotos.length}
+                            pageLimit={21}
+                            pageNeighbours={1}
+                            onPageChanged={this.onPageChanged}
+                        />
                         {currentPhotos.map(photos => (
                             <PhotoCard key={photos.id} photos={photos} />
                         ))}
-                    </div>
+                    </Fragment>
                        :
                     <Loader /> 
                 }
-            </div>
+            </Fragment>
         )
     }
 }

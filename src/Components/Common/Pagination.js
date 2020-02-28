@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 const LEFT_PAGE = "LEFT";
@@ -123,9 +123,8 @@ class Pagination extends Component {
     const pages = this.fetchPageNumbers();
 
     return (
-      <Fragment>
-        <nav aria-label="Countries Pagination">
-          <ul className="pagination center-top">
+      <div className="container">
+          <div className="pagination">
             {pages.map((page, index) => {
               if (page === LEFT_PAGE)
                 return (
@@ -174,9 +173,8 @@ class Pagination extends Component {
                 </li>
               );
             })}
-          </ul>
-        </nav>
-      </Fragment>
+          </div>
+      </div>
     );
   }
 }

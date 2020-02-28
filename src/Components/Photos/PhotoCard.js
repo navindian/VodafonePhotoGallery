@@ -8,7 +8,6 @@ const PhotoCard = props => {
     
         return (
           <Fragment>
-            <div className="col-sm-12 col-md-12">
                 <div className={classes.photoBox}>
                     <div className={classes.photoHolder} key={Math.random()}>
                         {/* thumbnail image wrapped in a link */}
@@ -31,7 +30,6 @@ const PhotoCard = props => {
                         </a>
                     </div>
                 </div>
-            </div>
           </Fragment>
         );
     }
