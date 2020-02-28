@@ -1,8 +1,7 @@
 import React from 'react'
 import classes from '../../css/Common.module.css'
 
-class Footer extends React.Component {
-    render() {
+const Footer= () =>  {
         return (
             <React.Fragment>
                 <div className={classes.clearfix}></div>
@@ -12,6 +11,5 @@ class Footer extends React.Component {
             </React.Fragment>
         )
     }
-}
 
 export default Footer

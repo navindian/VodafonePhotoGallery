@@ -2,8 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import notFound from '../../Images/notFound.jpg'
 
-class NotFound extends React.Component {
-    render() {
+const NotFound = () =>{
         return(
             <div>
                 <React.Fragment>
@@ -13,7 +12,7 @@ class NotFound extends React.Component {
                 </React.Fragment>
             </div>
         )
+   
     }
-}
 
 export default NotFound

@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment } from "react";
 import classes from '../../css/Common.module.css';
 
-export class PhotoCard extends Component {
-    render() {
-        const { id = "", title = "", url = "" , thumbnailUrl="" } =
-          this.props.photos || {};
+const PhotoCard = props => {
+
+    const { id = "", title = "", url = "" , thumbnailUrl="" } =
+          props.photos || {};
     
         return (
           <Fragment>
@@ -34,7 +34,6 @@ export class PhotoCard extends Component {
             </div>
           </Fragment>
         );
-      }
-}
+    }
 
 export default PhotoCard;

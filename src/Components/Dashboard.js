@@ -1,40 +1,33 @@
-import React, { Fragment } from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 import Footer from './Common/Footer'
 import { connect } from 'react-redux'
 import { usersList } from '../Redux/Actions/usersList'
-
 import classes from '../css/Common.module.css'
 import ListAlbum from './Albums/ListAlbum'
 import Loader from '../Components/Common/Loader.js';
 
-class Dashboard extends React.Component {
-    constructor(props) {
-        super(props)
+const Dashboard = props => {
+    
+    const [loader,changeloader]=useState(true)
 
-        this.state = {
-            loader: true
-        }
-    }
-
-    componentDidMount() {
-        this.props.usersList().then(() => {
-            this.setState({loader: false})
+    useEffect(() => {
+        props.usersList().then(() => {
+           changeloader(false)
         }).catch((err) => {
             console.log(err)
-            this.setState({loader: false})
+            changeloader(true)
         });
-    }
+    })
 
-    render() {
-        return (
-            <Fragment>
-                <div className={classes.listWrapper}>
-                    {this.state.loader ? <Loader /> : <ListAlbum />}
-                </div>
-                <Footer />
-            </Fragment>
-        )
-    }
+    return (
+        <Fragment>
+            <div className={classes.listWrapper}>
+                {loader ? <Loader /> : <ListAlbum />}
+            </div>
+            <Footer />
+        </Fragment>
+    )
+
 }
 
-export default connect(null, {usersList})(Dashboard)
+export default connect(null, { usersList })(Dashboard)
