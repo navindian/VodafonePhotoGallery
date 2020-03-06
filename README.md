@@ -79,3 +79,6 @@ npm install
 npm start
 
 open http://localhost:3000 in Chrome
+
+It shows the page as insecure, as we are not using the paid version.
+We have to go into the chrome settings and allow insecure.
