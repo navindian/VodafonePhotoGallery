@@ -5,6 +5,13 @@ import { usersList } from '../Redux/Actions/usersList'
 import classes from '../css/Common.module.css'
 import ListAlbum from './Albums/ListAlbum'
 import Loader from '../Components/Common/Loader.js';
+import { history } from '../Routing/history';
+
+let user = JSON.parse(localStorage.getItem('user'));
+// console.log(user);
+if(!user){
+    history.push('/Login')
+} 
 
 const Dashboard = props => {
     

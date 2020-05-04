@@ -5,6 +5,7 @@ import { albumsList } from '../../Redux/Actions/albumsList'
 import Loader from '../Common/Loader'
 import Pagination from '../Common//Pagination'
 import PhotoCard from './PhotoCard'
+import { history } from '../../Routing/history';
 
 class ListPhoto extends React.Component {
     constructor(props) {
@@ -19,6 +20,11 @@ class ListPhoto extends React.Component {
     }
 
     componentDidMount() {
+        let user = JSON.parse(localStorage.getItem('user'));
+        // console.log(user);
+        if(!user){
+            history.push('/Login')
+        } 
         this.props.photosList().then(() => {
             this.setState({loader: false})
         }).catch((err) => {

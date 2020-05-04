@@ -3,32 +3,43 @@ import { connect } from 'react-redux'
 import { Link } from "react-router-dom"
 import classes from '../../css/Common.module.css'
 import folderClasses from '../../css/Gallery.module.css'
+import { history } from '../../Routing/history';
 
 
-const Album = (props) => {
- 
-    const getUserName= (userId)=>{
-        if (props.users === undefined || props.users === "" || props.users === null) {
+class Album extends React.Component {
+
+    componentDidMount(){
+        let user = JSON.parse(localStorage.getItem('user'));
+        // console.log(user);
+        if(!user){
+            history.push('/Login')
+        } 
+    }
+
+    getUserName= (userId)=>{
+        if (this.props.users === undefined || this.props.users === "" || this.props.users === null) {
             return null
         }
-        const userData = props.users.filter(user => user.id === userId)
+        const userData = this.props.users.filter(user => user.id === userId)
         return userData[0].name
     }
 
-    const { id = "", title = "", userId = "" } =
-        props.albums || {};
+    render(){
+        const { id = "", title = "", userId = "" } =
+        this.props.albums || {};
 
-    return (
-        <div className={classes.imgWrapper}>
-            <Link to={`/photos/${id}`} >
-                <div className={folderClasses.ffolder + " " + folderClasses.medium + " " + folderClasses.cyan} >
-                    <span>{title.length > 25 ? title.substr(0, 25) + "..." : title}</span>
+        return (
+            <div className={classes.imgWrapper}>
+                <Link to={`/photos/${id}`} >
+                    <div className={folderClasses.ffolder + " " + folderClasses.medium + " " + folderClasses.cyan} >
+                        <span>{title.length > 25 ? title.substr(0, 25) + "..." : title}</span>
 
-                    <div className={classes.imgDesc}>{"By : " + getUserName(userId)}</div>
-                </div>
-            </Link>
-        </div>
-    )
+                        <div className={classes.imgDesc}>{"By : " + this.getUserName(userId)}</div>
+                    </div>
+                </Link>
+            </div>
+        )
+    }
 }
 
 const mapStateToProps = state => {

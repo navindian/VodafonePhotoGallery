@@ -8,6 +8,8 @@ import Album from '../Components/Albums/ListAlbum';
 import NotFound from '../Components/Common/404'
 import ListPhoto from "../Components/Photos/ListPhoto";
 import Photos from "../Components/Photos/ListPhoto";
+import { Login } from '../Components/Login/Login';
+import Register from '../Components/Register/Register';
 
 
 export default class Routing extends React.Component {
@@ -21,10 +23,13 @@ export default class Routing extends React.Component {
             </li>
             <li><Link to="/Album">Albums</Link></li>
             <li><Link to="/Photos">Photos</Link></li>
+            <li style={{float:"right"}} ><Link to="/Login"> Logout </Link> </li>
           </ul>
     
         <Switch>
           <Route exact path="/"  component={Dashboard} />
+          <Route exact path="/Login" component={Login} />
+          <Route exact path="/Register" component={Register} />
           <Route exact path="/Album"  component={Album} />
           <Route exact path="/Photos"  component={Photos} />
           <Route path="/photos/:id" component={ListPhoto} />

@@ -4,6 +4,8 @@ import { albumsList } from '../../Redux/Actions/albumsList'
 import Album from './Album'
 import Loader from '../Common/Loader'
 import Pagination from '../Common/Pagination'
+import { history } from '../../Routing/history';
+
 
 class ListAlbum extends React.Component {
     constructor(props) {
@@ -17,7 +19,12 @@ class ListAlbum extends React.Component {
         }
     }
 
-    componentDidMount() {        
+    componentDidMount() { 
+        let user = JSON.parse(localStorage.getItem('user'));
+        // console.log(user);
+        if(!user){
+            history.push('/Login')
+        }        
         this.props.albumsList().then(() => {
             this.setState({loader: false})
         }).catch((err) => {
